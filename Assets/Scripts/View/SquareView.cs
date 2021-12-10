@@ -40,7 +40,8 @@ public class SquareView : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void Hide()
     {
-        _squareImage.color = Color.clear;
+        //_squareImage.color = Color.clear;
+        _squareImage.color = new Color(MyModel.MyColor.r, MyModel.MyColor.g, MyModel.MyColor.b, 0.5f);
     }
 
     public void Show()

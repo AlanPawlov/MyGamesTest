@@ -12,6 +12,8 @@ public class GameRules : ScriptableObject
     [field: SerializeField] public int SequenceStep { get; private set; }
     [field: SerializeField, Range(1, 12)] public int UsableSquareCount { get; private set; }
     [field: SerializeField] public int UsableSquareCountStep { get; private set; }
+    [field: SerializeField] public int SquareTypeCount { get; private set; }
+    [field: SerializeField] public int SquareTypeCountStep { get; private set; }
 
     [field: SerializeField, Header("Reward")] public int RewardScore { get; private set; }
 }

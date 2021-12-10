@@ -9,6 +9,7 @@ public class SquareContainerViewBase : MonoBehaviour
     protected SquaresList _squaresTypes;
     protected SquareView _squarePrefab;
     protected SequenceSquareController _sequenceSquareController;
+    protected int _level;
 
     public virtual void SetUp(GameRules rules, SquaresList allSquares, SequenceSquareController sequenceController, SquareView prefab)
     {
@@ -30,7 +31,8 @@ public class SquareContainerViewBase : MonoBehaviour
 
     protected virtual void ChooseRandomModel(SquareView square)
     {
-        var model = _squaresTypes.allSquares[Random.Range(0, _squaresTypes.allSquares.Count)];
+        var maxModelIndex = Mathf.Clamp(_rules.SquareTypeCount + _level * _rules.SquareTypeCountStep,0, _squaresTypes.allSquares.Count);
+        var model = _squaresTypes.allSquares[Random.Range(0, maxModelIndex)];
         square.SetView(model);
     }
 }

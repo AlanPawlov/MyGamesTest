@@ -158,6 +158,7 @@ MonoBehaviour:
   _sequenceContainerView: {fileID: 0}
   _usablesContainerView: {fileID: 0}
   _squarePrefab: {fileID: 6162576722476269976, guid: ff1ac82761afbf54aa798a33231f2340, type: 3}
+  _level: 0
 --- !u!4 &84777358
 Transform:
   m_ObjectHideFlags: 0

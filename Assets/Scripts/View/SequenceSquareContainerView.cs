@@ -8,8 +8,9 @@ public class SequenceSquareContainerView : SquareContainerViewBase
     private CustomProcess _showSquareSequence;
     public Action OnHideSequence = delegate { };
 
-    public void StartMatch()
+    public void StartLevel(int level)
     {
+        _level = level;
         _myRect = GetComponent<RectTransform>();
         _showSquareSequence = new CustomProcess();
         CreateSequence();
@@ -18,10 +19,13 @@ public class SequenceSquareContainerView : SquareContainerViewBase
 
     public void CreateSequence()
     {
-        var squareSize = CalculateSquareSize(_myRect.rect.width,
-            _myRect.rect.height, _rules.SquareSequenceLenght);
+        int squareCount = Mathf.Clamp(_rules.SquareSequenceLenght + _rules.SequenceStep * _level,
+            0, 999);
 
-        for (int j = 0; j < _rules.SquareSequenceLenght; j++)
+        var squareSize = CalculateSquareSize(_myRect.rect.width,
+            _myRect.rect.height, squareCount);
+
+        for (int j = 0; j < squareCount; j++)
         {
             var square = Instantiate(_squarePrefab, _myRect);
             square.MyRect.sizeDelta = squareSize;
@@ -32,7 +36,9 @@ public class SequenceSquareContainerView : SquareContainerViewBase
 
     private void ShowSequence()
     {
-        float timer = _rules.ShowSequenceDuration;
+        float timer = Mathf.Clamp(_rules.ShowSequenceDuration - _rules.ShowSequenceDurationStep * _level
+            , 1.5f, 999);
+        Debug.Log(timer);
         _showSquareSequence.StartProcess(() =>
         {
             timer -= Time.deltaTime;

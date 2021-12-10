@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: GameRules
   m_EditorClassIdentifier: 
   <ShowSequenceDuration>k__BackingField: 3
-  <ShowSequenceDurationStep>k__BackingField: 1.01
+  <ShowSequenceDurationStep>k__BackingField: 1
   <MatchDuration>k__BackingField: 1.52
   <MatchDurationStep>k__BackingField: 0
   <SquareSequenceLenght>k__BackingField: 4
-  <SequenceStep>k__BackingField: 0
+  <SequenceStep>k__BackingField: 1
   <UsableSquareCount>k__BackingField: 5
-  <UsableSquareCountStep>k__BackingField: 0
+  <UsableSquareCountStep>k__BackingField: 1
+  <SquareTypeCount>k__BackingField: 1
+  <SquareTypeCountStep>k__BackingField: 1
   <RewardScore>k__BackingField: 0

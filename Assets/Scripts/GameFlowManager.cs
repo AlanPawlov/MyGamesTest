@@ -10,6 +10,7 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField] private SequenceSquareContainerView _sequenceContainerView;
     [SerializeField] private UsablesSquareContainerView _usablesContainerView;
     [SerializeField] private SquareView _squarePrefab;
+    private int _level = 0;
 
     private SequenceSquareController _sequenceSquareController;
     private UsableSquareController _usableSquareController;
@@ -46,12 +47,12 @@ public class GameFlowManager : MonoBehaviour
 
     private void SetUpUsableSquare()
     {
-        _usablesContainerView?.CreateUsableSquare();
+        _usablesContainerView?.StartLevel(_level);
     }
 
     public void PlayGame()
     {
-        _sequenceContainerView?.StartMatch();
+        _sequenceContainerView?.StartLevel(_level);
     }
 
     public void LoseGame()
@@ -63,6 +64,7 @@ public class GameFlowManager : MonoBehaviour
     public void WinGame()
     {
         Debug.Log("You Win");
+        _level++;
         Clear();
         PlayGame();
     }

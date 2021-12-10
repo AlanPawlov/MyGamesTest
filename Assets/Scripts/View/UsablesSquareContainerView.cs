@@ -11,6 +11,13 @@ public class UsablesSquareContainerView : SquareContainerViewBase
         base.SetUp(rules, allSquares, sequenceController, prefab);
         _usableSquareController = usableController;
     }
+
+    public void StartLevel(int level)
+    {
+        _level = level;
+        CreateUsableSquare();
+    }
+
     public void CreateUsableSquare()
     {
         _myRect = GetComponent<RectTransform>();
