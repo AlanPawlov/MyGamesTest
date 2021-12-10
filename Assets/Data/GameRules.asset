@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e2a91a61f41e54caa01e284c9506b5, type: 3}
   m_Name: GameRules
   m_EditorClassIdentifier: 
-  <ShowSequenceDuration>k__BackingField: 15.1
+  <ShowSequenceDuration>k__BackingField: 3
   <ShowSequenceDurationStep>k__BackingField: 1.01
   <MatchDuration>k__BackingField: 1.52
   <MatchDurationStep>k__BackingField: 0
-  <SquareSequenceLenght>k__BackingField: 6
+  <SquareSequenceLenght>k__BackingField: 4
   <SequenceStep>k__BackingField: 0
-  <UsableSquareCount>k__BackingField: 12
+  <UsableSquareCount>k__BackingField: 5
   <UsableSquareCountStep>k__BackingField: 0
+  <RewardScore>k__BackingField: 0

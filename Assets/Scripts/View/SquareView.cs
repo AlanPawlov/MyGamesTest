@@ -7,20 +7,20 @@ public class SquareView : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     #region Fields
     private Image _squareImage;
-    private SquareModel _myModel;
 
-    public Action<RectTransform, PointerEventData> OnDragAction = delegate { };
-    public Action<RectTransform, PointerEventData> OnEndDragAction = delegate { };
+    public Action<SquareView, PointerEventData> OnDragAction = delegate { };
+    public Action<SquareView, PointerEventData> OnEndDragAction = delegate { };
     #endregion
 
     #region Properties
-    [field: SerializeField] public RectTransform _myRect { get; private set; }
+    [field: SerializeField] public RectTransform MyRect { get; private set; }
+    [field: SerializeField] public SquareModel MyModel { get; private set; }
     #endregion
 
     #region UnityMethods
     private void Awake()
     {
-        _myRect = GetComponent<RectTransform>();
+        MyRect = GetComponent<RectTransform>();
         _squareImage = GetComponent<Image>();
     }
 
@@ -34,18 +34,28 @@ public class SquareView : MonoBehaviour, IDragHandler, IEndDragHandler
     #region Methods
     public void SetView(SquareModel model)
     {
-        _myModel = model;
-        _squareImage.color = _myModel.MyColor;
+        MyModel = model;
+        _squareImage.color = MyModel.MyColor;
+    }
+
+    public void Hide()
+    {
+        _squareImage.color = Color.clear;
+    }
+
+    public void Show()
+    {
+        _squareImage.color = MyModel.MyColor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        OnEndDragAction?.Invoke(_myRect, eventData);
+        OnEndDragAction?.Invoke(this, eventData);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        OnDragAction?.Invoke(_myRect, eventData);
+        OnDragAction?.Invoke(this, eventData);
     }
     #endregion
 }
