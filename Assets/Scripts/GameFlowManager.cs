@@ -104,6 +104,8 @@ public class GameFlowManager : MonoBehaviour
     public void LoseGame()
     {
         _menuController.SwitchMenu(MenuTypes.EnterName);
+        _level = 0;
+        Clear();
     }
 
     public void WinGame()

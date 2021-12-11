@@ -26,7 +26,7 @@ public class SaveLoadController
             if (_instance == null)
             {
                 _instance = new SaveLoadController();
-                _savePath = $"{Application.persistentDataPath}/Saves/MySaveData.dat";
+                _savePath = $"{Application.persistentDataPath}/MySaveData.dat";
             }
             return _instance;
         }
@@ -45,7 +45,17 @@ public class SaveLoadController
 
     public void Save(SaveData[] data)
     {
+        Debug.Log(_savePath);
         var jsonString = JsonConvert.SerializeObject(data);
-        File.WriteAllText(_savePath, jsonString);
+        if (File.Exists(_savePath))
+        {
+            File.WriteAllText(_savePath, jsonString);
+        }
+        else
+        {
+            FileStream file = File.Create(_savePath);
+            file.Close();
+            File.WriteAllText(_savePath, jsonString);
+        }
     }
 }

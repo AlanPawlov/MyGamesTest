@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class ScoreController
 {
     private SaveData[] _highScores;
-    private int _currentScore = 0;
+    public Action<int> OnScoreChange = delegate { };
+
+    public int CurrentScore { get; private set; }
 
     public ScoreController()
     {
@@ -23,7 +26,7 @@ public class ScoreController
     {
         var newResult = new SaveData();
         newResult.name = name;
-        newResult.scores = _currentScore;
+        newResult.scores = CurrentScore;
 
         var tempArray = new SaveData[11];
         _highScores.CopyTo(tempArray, 0);
@@ -50,12 +53,13 @@ public class ScoreController
 
     public void ChangeScore(int score)
     {
-        _currentScore += score;
+        CurrentScore += score;
+        OnScoreChange.Invoke(CurrentScore);
     }
 
     public void ResetScore()
     {
-        _currentScore = 0;
+        CurrentScore = 0;
     }
 
     public SaveData GetScore(int index)
