@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SquareContainerViewBase : MonoBehaviour
+public class SquareContainerViewBase : MonoBehaviour, IRequireDependency<SequenceSquareController>
 {
     protected GameRules _rules;
     protected RectTransform _myRect;
@@ -11,10 +11,9 @@ public class SquareContainerViewBase : MonoBehaviour
     protected SequenceSquareController _sequenceSquareController;
     protected int _level;
 
-    public virtual void SetUp(GameRules rules, SquaresList allSquares, SequenceSquareController sequenceController, SquareView prefab)
+    public virtual void SetUp(GameRules rules, SquaresList allSquares, SquareView prefab)
     {
         _rules = rules;
-        _sequenceSquareController = sequenceController;
         _squaresTypes = allSquares;
         _squarePrefab = prefab;
     }
@@ -34,5 +33,10 @@ public class SquareContainerViewBase : MonoBehaviour
         var maxModelIndex = Mathf.Clamp(_rules.SquareTypeCount + _level * _rules.SquareTypeCountStep,0, _squaresTypes.allSquares.Count);
         var model = _squaresTypes.allSquares[Random.Range(0, maxModelIndex)];
         square.SetView(model);
+    }
+
+    public void AssignDependency(SequenceSquareController dependency)
+    {
+        _sequenceSquareController = dependency;
     }
 }

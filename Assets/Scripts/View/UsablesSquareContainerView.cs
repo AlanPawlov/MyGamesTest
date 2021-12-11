@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UsablesSquareContainerView : SquareContainerViewBase
+public class UsablesSquareContainerView : SquareContainerViewBase, IRequireDependency<UsableSquareController>
 {
     private UsableSquareController _usableSquareController;
-    public void SetUp(GameRules rules, SquaresList allSquares, SequenceSquareController sequenceController, SquareView prefab, UsableSquareController usableController)
-    {
-        base.SetUp(rules, allSquares, sequenceController, prefab);
-        _usableSquareController = usableController;
-    }
 
     public void StartLevel(int level)
     {
@@ -56,5 +51,10 @@ public class UsablesSquareContainerView : SquareContainerViewBase
             ChooseRandomModel(square);
             square.MyRect.parent = _myRect;
         }
+    }
+
+    public void AssignDependency(UsableSquareController dependency)
+    {
+        _usableSquareController = dependency;
     }
 }
