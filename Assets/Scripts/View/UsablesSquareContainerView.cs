@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class UsablesSquareContainerView : SquareContainerViewBase
 {
+    #region Methods
+
     public void StartCreateUsableSquare(int level)
     {
         _level = level;
@@ -46,9 +48,15 @@ public class UsablesSquareContainerView : SquareContainerViewBase
         }
     }
 
+    #endregion
+
+    #region IRequireDependency
+
     public override void AssignDependency(SquareController dependency)
     {
         base.AssignDependency(dependency);
         _squareController.OnStartCreateUsableSquare += StartCreateUsableSquare;
     }
+
+    #endregion
 }

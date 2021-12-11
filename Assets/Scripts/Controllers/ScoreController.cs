@@ -1,21 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 using System;
 
 public class ScoreController
 {
+    #region Field
+
     private SaveData[] _highScores;
     public Action<int> OnScoreChange = delegate { };
 
+    #endregion
+
+    #region Properties
+
     public int CurrentScore { get; private set; }
 
+    #endregion
+
+    #region Class Life Cycle
     public ScoreController()
     {
         Initialize();
     }
 
+    #endregion
+
+    #region Methods
     private void Initialize()
     {
         _highScores = SaveLoadController.Instance.Load();
@@ -102,4 +111,6 @@ public class ScoreController
         _highScores[9].name = "Dante";
         _highScores[9].scores = 8;
     }
+
+    #endregion
 }

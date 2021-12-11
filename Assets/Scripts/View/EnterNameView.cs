@@ -1,16 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class EnterNameView : MenuViewBase, IRequireDependency<ScoreController>
 {
+    #region Fields
+
     [SerializeField] private TMP_Text _yourScoreText;
     [SerializeField] private TMP_InputField _nameField;
     [SerializeField] private Button _enterButton;
     [SerializeField] private Button _skipButton;
     private ScoreController _scoreController;
+
+    #endregion
+
+    #region Unity Methods
 
     private void OnEnable()
     {
@@ -29,6 +33,10 @@ public class EnterNameView : MenuViewBase, IRequireDependency<ScoreController>
         _enterButton.onClick.RemoveAllListeners();
         _enterButton.onClick.RemoveAllListeners();
     }
+
+    #endregion
+
+    #region Methods
 
     protected override void Show()
     {
@@ -56,8 +64,15 @@ public class EnterNameView : MenuViewBase, IRequireDependency<ScoreController>
         _menuController.SwitchMenu(MenuTypes.MainMenu);
     }
 
+    #endregion
+
+
+    #region IRequireDependency
+
     public void AssignDependency(ScoreController dependency)
     {
         _scoreController = dependency;
     }
+
+    #endregion
 }

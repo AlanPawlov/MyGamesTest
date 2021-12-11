@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
+using System;
 
-[System.Serializable]
+[Serializable]
 public class SaveData
 {
     public string name;
@@ -14,11 +13,14 @@ public class SaveData
 public class SaveLoadController
 {
     #region Fields
+
     private static string _savePath;
     private static SaveLoadController _instance;
+
     #endregion
 
     #region Properties
+
     public static SaveLoadController Instance
     {
         get
@@ -31,7 +33,10 @@ public class SaveLoadController
             return _instance;
         }
     }
+
     #endregion
+
+    #region Methods
 
     public SaveData[] Load()
     {
@@ -49,4 +54,6 @@ public class SaveLoadController
         var jsonString = JsonConvert.SerializeObject(data);
         File.WriteAllText(_savePath, jsonString);
     }
+
+    #endregion
 }

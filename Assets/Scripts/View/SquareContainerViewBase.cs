@@ -1,17 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SquareContainerViewBase : MonoBehaviour, IRequireDependency<SquareController>
 {
-    protected GameRules _rules;
+    #region Fields
+
+    protected AppSettings _rules;
     protected RectTransform _myRect;
     protected SquaresList _squaresTypes;
     protected SquareView _squarePrefab;
     protected SquareController _squareController;
     protected int _level;
 
-    public virtual void SetUp(GameRules rules, SquaresList allSquares, SquareView prefab)
+    #endregion
+
+    #region Unity Methods
+    private void Awake()
+    {
+        _myRect = GetComponent<RectTransform>();
+    }
+    #endregion
+
+    #region Methods
+
+    public virtual void SetUp(AppSettings rules, SquaresList allSquares, SquareView prefab)
     {
         _rules = rules;
         _squaresTypes = allSquares;
@@ -30,13 +41,21 @@ public class SquareContainerViewBase : MonoBehaviour, IRequireDependency<SquareC
 
     protected virtual void ChooseRandomModel(SquareView square)
     {
-        var maxModelIndex = Mathf.Clamp(_rules.SquareTypeCount + _level * _rules.SquareTypeCountStep,0, _squaresTypes.allSquares.Count);
+        var maxModelIndex = Mathf.Clamp(_rules.SquareTypeCount + _level * _rules.SquareTypeCountStep,
+            0, _squaresTypes.allSquares.Count);
+
         var model = _squaresTypes.allSquares[Random.Range(0, maxModelIndex)];
         square.SetView(model);
     }
+
+    #endregion
+
+    #region IRequireDependency
 
     public virtual void AssignDependency(SquareController dependency)
     {
         _squareController = dependency;
     }
+
+    #endregion
 }

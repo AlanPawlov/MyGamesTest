@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SequenceSquareContainerView : SquareContainerViewBase
 {
-    private CustomProcess _showSquareSequence;
 
-    public void StartCreateSequence(int level)
+    #region Methods
+    public void CreateSequenceSquare(int level)
     {
         _level = level;
-        _myRect = GetComponent<RectTransform>();
-        _showSquareSequence = new CustomProcess();
         int squareCount = Mathf.Clamp(_rules.SquareSequenceLenght + _rules.SequenceStep * _level,
-            0, 999);
+            0, _rules.MaxSquareInSequence);
 
         var squareSize = CalculateSquareSize(_myRect.rect.width,
             _myRect.rect.height, squareCount);
@@ -26,9 +22,15 @@ public class SequenceSquareContainerView : SquareContainerViewBase
         }
     }
 
+    #endregion
+
+    #region IRequireDependency
+
     public override void AssignDependency(SquareController dependency)
     {
         base.AssignDependency(dependency);
-        _squareController.OnStartCreateSequenceSquare += StartCreateSequence;
+        _squareController.OnStartCreateSequenceSquare += CreateSequenceSquare;
     }
+
+    #endregion
 }

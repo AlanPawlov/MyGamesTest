@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
 
 public class MainMenuView : MenuViewBase
 {
+    #region Fields
+
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _hiScoresButton;
     public Action OnPlayButtonClick = delegate { };
 
+    #endregion
+
+    #region Unity Methods
     private void OnEnable()
     {
         _playButton.onClick.AddListener(() =>
@@ -28,4 +31,5 @@ public class MainMenuView : MenuViewBase
         _playButton.onClick.RemoveAllListeners();
         _hiScoresButton.onClick.RemoveAllListeners();
     }
+    #endregion
 }

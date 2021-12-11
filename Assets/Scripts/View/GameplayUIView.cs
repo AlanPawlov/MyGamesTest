@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class GameplayUIView : MenuViewBase, IRequireDependency<ScoreController>, IRequireDependency<SquareController>
 {
+    #region Fields
+
     [SerializeField] private TMP_Text _scoreCountText;
     [SerializeField] private TMP_Text _timerText;
     private ScoreController _scoreController;
     private SquareController _squareController;
+
+    #endregion
+
+    #region Methods
 
     private void UpdateScore(int score)
     {
@@ -20,6 +23,10 @@ public class GameplayUIView : MenuViewBase, IRequireDependency<ScoreController>,
     {
         _timerText.text = $"Score\n{time}";
     }
+
+    #endregion
+
+    #region IRequireDependency
 
     public void AssignDependency(ScoreController dependency)
     {
@@ -33,4 +40,6 @@ public class GameplayUIView : MenuViewBase, IRequireDependency<ScoreController>,
         _squareController = dependency;
         _squareController.OnTimerChange += UpdateTimer;
     }
+
+    #endregion
 }

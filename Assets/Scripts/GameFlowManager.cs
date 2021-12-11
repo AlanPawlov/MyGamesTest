@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class GameFlowManager : MonoBehaviour
 {
     #region Fields
-    [SerializeField] private GameRules _rules;
+
+    [SerializeField] private AppSettings _rules;
     [SerializeField] private SquaresList _squaresTypes;
     [SerializeField] private SequenceSquareContainerView _sequenceContainerView;
     [SerializeField] private UsablesSquareContainerView _usablesContainerView;
@@ -15,33 +16,48 @@ public class GameFlowManager : MonoBehaviour
     private ScoreController _scoreController;
 
     private int _level = 0;
+
     #endregion
 
     #region UnityMethods
+
     private void OnEnable()
     {
-        Initialize();
+        CreateControllers();
+        SetUpSquareContainers();
         InjectToMenus();
-        Subscribe();
+        Subscribes();
         SetStartScreen();
     }
+
+    private void OnDisable()
+    {
+        _menuController.OnPlayGame -= PlayGame;
+        _squareController.OnCompletteBuildSequence -= WinGame;
+        _squareController.OnErrorSquare -= LoseGame;
+        _squareController.OnEndTime -= LoseGame;
+    }
+
     #endregion
 
     #region Methods
 
-    private void Initialize()
+    private void CreateControllers()
     {
         _menuController = new MenuController();
         _scoreController = new ScoreController();
         _squareController = new SquareController(_rules);
+    }
 
+    private void SetUpSquareContainers()
+    {
         _sequenceContainerView = FindObjectOfType<SequenceSquareContainerView>();
         _usablesContainerView = FindObjectOfType<UsablesSquareContainerView>();
         _sequenceContainerView.SetUp(_rules, _squaresTypes, _squarePrefab);
         _usablesContainerView.SetUp(_rules, _squaresTypes, _squarePrefab);
     }
 
-    private void Subscribe()
+    private void Subscribes()
     {
         _menuController.OnPlayGame += PlayGame;
         _squareController.OnCompletteBuildSequence += WinGame;
@@ -90,7 +106,6 @@ public class GameFlowManager : MonoBehaviour
 
     public void LoseGame()
     {
-        Debug.Log("Lose");
         _menuController.SwitchMenu(MenuTypes.EnterName);
         _level = 0;
         Clear();
@@ -108,5 +123,6 @@ public class GameFlowManager : MonoBehaviour
     {
         _squareController.Clear();
     }
+
     #endregion
 }

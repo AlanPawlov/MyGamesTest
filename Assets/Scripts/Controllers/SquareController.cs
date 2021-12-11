@@ -5,7 +5,8 @@ using System;
 public class SquareController
 {
     #region Fields
-    private GameRules _rules;
+
+    private AppSettings _rules;
     private int _currentSquare = 0;
     private List<SquareView> _usableSquareViews = new List<SquareView>();
     private List<SquareView> _sequenceSquareViews = new List<SquareView>();
@@ -18,20 +19,26 @@ public class SquareController
     public Action OnCompletteBuildSequence = delegate { };
     public Action OnErrorSquare = delegate { };
     public Action OnEndTime = delegate { };
+
     #endregion
 
     #region Properties
+
     public float GameTimer { get; private set; }
+
     #endregion
 
     #region Class Life Cycle
-    public SquareController(GameRules rules)
+
+    public SquareController(AppSettings rules)
     {
         _rules = rules;
     }
+
     #endregion
 
     #region Methods
+
     public void AddSequenceSquare(SquareView square)
     {
         if (!_sequenceSquareViews.Contains(square))
@@ -69,7 +76,7 @@ public class SquareController
     private void StartGameTimer(int level)
     {
         GameTimer = Mathf.Clamp(_rules.MatchDuration - _rules.MatchDurationStep * level,
-            1.5f, 999);
+            _rules.MinMatchDuration, _rules.MaxMatchDuration);
 
         _gameTimerProcess.StartProcess(() =>
         {
@@ -86,7 +93,7 @@ public class SquareController
     private void DelayHideSequence(int level)
     {
         float timer = Mathf.Clamp(_rules.ShowSequenceDuration - _rules.ShowSequenceDurationStep * level
-            , 1.5f, 999);
+            , _rules.MinShowSequenceDuration, _rules.MaxShowSequenceDuration);
 
         _delayHideProcess.StartProcess(() =>
         {
@@ -146,5 +153,6 @@ public class SquareController
         OnStartCreateUsableSquare.Invoke(level);
         StartGameTimer(level);
     }
+
     #endregion
 }

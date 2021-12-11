@@ -1,13 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuViewBase : MonoBehaviour, IRequireDependency<MenuController>
 {
+    #region Fields
+
     [SerializeField] protected CanvasGroup _myCanvasGroup;
     [SerializeField] protected MenuTypes _menuType;
     protected MenuController _menuController;
+
+    #endregion
+
+    #region Methods
 
     protected virtual void Show()
     {
@@ -33,9 +36,15 @@ public class MenuViewBase : MonoBehaviour, IRequireDependency<MenuController>
         }
     }
 
+    #endregion
+
+    #region IRequireDependency
+
     public void AssignDependency(MenuController dependency)
     {
         _menuController = dependency;
         _menuController.OnChangeMenu += ChangeMenu;
     }
+
+    #endregion
 }
