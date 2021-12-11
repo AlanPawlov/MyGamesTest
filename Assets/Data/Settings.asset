@@ -10,22 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7e2a91a61f41e54caa01e284c9506b5, type: 3}
-  m_Name: Settings
+  m_Name: 
   m_EditorClassIdentifier: 
-  <ShowSequenceDuration>k__BackingField: 2.2
-  <ShowSequenceDurationStep>k__BackingField: 1
-  <MaxShowSequenceDuration>k__BackingField: 0
-  <MinShowSequenceDuration>k__BackingField: 0
-  <MatchDuration>k__BackingField: 48
+  <ShowSequenceDuration>k__BackingField: 3
+  <ShowSequenceDurationStep>k__BackingField: 0.3
+  <MaxShowSequenceDuration>k__BackingField: 99
+  <MinShowSequenceDuration>k__BackingField: 1.5
+  <MatchDuration>k__BackingField: 30
   <MatchDurationStep>k__BackingField: 1
-  <MaxMatchDuration>k__BackingField: 0
-  <MinMatchDuration>k__BackingField: 0
-  <SquareSequenceLenght>k__BackingField: 4
+  <MaxMatchDuration>k__BackingField: 999
+  <MinMatchDuration>k__BackingField: 5
+  <SquareSequenceLenght>k__BackingField: 3
   <SequenceStep>k__BackingField: 1
-  <MaxSquareInSequence>k__BackingField: 0
+  <MaxSquareInSequence>k__BackingField: 50
   <UsableSquareCount>k__BackingField: 5
-  <UsableSquareCountStep>k__BackingField: 1
-  <MaxUsableSquare>k__BackingField: 10
   <SquareTypeCount>k__BackingField: 1
   <SquareTypeCountStep>k__BackingField: 1
-  <RewardScore>k__BackingField: 12
+  <RewardScore>k__BackingField: 0
