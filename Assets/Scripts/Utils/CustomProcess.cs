@@ -16,7 +16,7 @@ public class CustomProcess
     #region Properties
 
     public bool IsActive { get => _isBusy; }
-
+    
     #endregion
 
 

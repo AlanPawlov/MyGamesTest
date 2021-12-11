@@ -10,24 +10,15 @@ public class GameplayUIView : MenuViewBase, IRequireDependency<ScoreController>,
     [SerializeField] private TMP_Text _timerText;
     private ScoreController _scoreController;
     private SquareController _squareController;
-    private void OnEnable()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-
-    }
 
     private void UpdateScore(int score)
     {
-        _scoreCountText.text = $"Score\n{score.ToString()}";
+        _scoreCountText.text = $"Score\n{score}";
     }
 
     private void UpdateTimer(int time)
     {
-        _timerText.text = time.ToString();
+        _timerText.text = $"Score\n{time}";
     }
 
     public void AssignDependency(ScoreController dependency)

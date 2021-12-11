@@ -191,9 +191,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 814499755}
     m_Modifications:
+    - target: {fileID: 5973821914637200813, guid: e103a8bf0d99fe841940b363f3011d4d, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973821914637200813, guid: e103a8bf0d99fe841940b363f3011d4d, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973821914637200813, guid: e103a8bf0d99fe841940b363f3011d4d, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1440
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973821914637200813, guid: e103a8bf0d99fe841940b363f3011d4d, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 720
+      objectReference: {fileID: 0}
     - target: {fileID: 5973821914637200815, guid: e103a8bf0d99fe841940b363f3011d4d, type: 3}
       propertyPath: m_Name
       value: GameplayCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973821914637200816, guid: e103a8bf0d99fe841940b363f3011d4d, type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5973821914637200819, guid: e103a8bf0d99fe841940b363f3011d4d, type: 3}
       propertyPath: m_Pivot.x
@@ -822,9 +842,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 814499755}
     m_Modifications:
+    - target: {fileID: 1374726273086509965, guid: 823c08a2663913d43a6532e99bf754fe, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374726273086509965, guid: 823c08a2663913d43a6532e99bf754fe, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374726273086509965, guid: 823c08a2663913d43a6532e99bf754fe, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1440
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374726273086509965, guid: 823c08a2663913d43a6532e99bf754fe, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 720
+      objectReference: {fileID: 0}
     - target: {fileID: 1374726273086509967, guid: 823c08a2663913d43a6532e99bf754fe, type: 3}
       propertyPath: m_Name
       value: MenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374726273086509968, guid: 823c08a2663913d43a6532e99bf754fe, type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1374726273086509971, guid: 823c08a2663913d43a6532e99bf754fe, type: 3}
       propertyPath: m_Pivot.x
@@ -1075,6 +1115,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnterNameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3127869159532316070, guid: ee1c042cc09d5f846818d4882cd141fd, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3127869159532316074, guid: ee1c042cc09d5f846818d4882cd141fd, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1085,7 +1129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3127869159532316074, guid: ee1c042cc09d5f846818d4882cd141fd, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3127869159532316074, guid: ee1c042cc09d5f846818d4882cd141fd, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1168,6 +1212,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 814499755}
     m_Modifications:
+    - target: {fileID: 8660254018201506357, guid: f7d281e66648c394eacbc08da8fc014e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -45.13257
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660254018882426552, guid: f7d281e66648c394eacbc08da8fc014e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 15.516602
+      objectReference: {fileID: 0}
     - target: {fileID: 8660254018987476545, guid: f7d281e66648c394eacbc08da8fc014e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1178,7 +1230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8660254018987476545, guid: f7d281e66648c394eacbc08da8fc014e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8660254018987476545, guid: f7d281e66648c394eacbc08da8fc014e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1255,6 +1307,14 @@ PrefabInstance:
     - target: {fileID: 8660254018987476549, guid: f7d281e66648c394eacbc08da8fc014e, type: 3}
       propertyPath: m_Name
       value: HighScoreCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660254018987476575, guid: f7d281e66648c394eacbc08da8fc014e, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660254019054944456, guid: f7d281e66648c394eacbc08da8fc014e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 17.389404
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d281e66648c394eacbc08da8fc014e, type: 3}
