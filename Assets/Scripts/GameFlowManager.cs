@@ -10,8 +10,7 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField] private SequenceSquareContainerView _sequenceContainerView;
     [SerializeField] private UsablesSquareContainerView _usablesContainerView;
     [SerializeField] private SquareView _squarePrefab;
-    private SequenceSquareController _sequenceSquareController;
-    private UsableSquareController _usableSquareController;
+    private SquareController _squareController;
     private MenuController _menuController;
     private ScoreController _scoreController;
 
@@ -26,7 +25,6 @@ public class GameFlowManager : MonoBehaviour
         Subscribe();
         SetStartScreen();
     }
-
     #endregion
 
     #region Methods
@@ -35,8 +33,7 @@ public class GameFlowManager : MonoBehaviour
     {
         _menuController = new MenuController();
         _scoreController = new ScoreController();
-        _sequenceSquareController = new SequenceSquareController();
-        _usableSquareController = new UsableSquareController();
+        _squareController = new SquareController(_rules);
 
         _sequenceContainerView = FindObjectOfType<SequenceSquareContainerView>();
         _usablesContainerView = FindObjectOfType<UsablesSquareContainerView>();
@@ -47,9 +44,9 @@ public class GameFlowManager : MonoBehaviour
     private void Subscribe()
     {
         _menuController.OnPlayGame += PlayGame;
-        _sequenceSquareController.OnCompletteBuildSequence += WinGame;
-        _sequenceSquareController.OnErrorSquare += LoseGame;
-        _sequenceContainerView.OnHideSequence += SetUpUsableSquare;
+        _squareController.OnCompletteBuildSequence += WinGame;
+        _squareController.OnErrorSquare += LoseGame;
+        _squareController.OnEndTime += LoseGame;
     }
 
     private void InjectToMenus()
@@ -74,15 +71,10 @@ public class GameFlowManager : MonoBehaviour
             IRequireDependency<ScoreController> item = (IRequireDependency<ScoreController>)view;
             item.AssignDependency(_scoreController);
         }
-        if (view is IRequireDependency<SequenceSquareController>)
+        if (view is IRequireDependency<SquareController>)
         {
-            IRequireDependency<SequenceSquareController> item = (IRequireDependency<SequenceSquareController>)view;
-            item.AssignDependency(_sequenceSquareController);
-        }
-        if (view is IRequireDependency<UsableSquareController>)
-        {
-            IRequireDependency<UsableSquareController> item = (IRequireDependency<UsableSquareController>)view;
-            item.AssignDependency(_usableSquareController);
+            IRequireDependency<SquareController> item = (IRequireDependency<SquareController>)view;
+            item.AssignDependency(_squareController);
         }
     }
 
@@ -91,18 +83,14 @@ public class GameFlowManager : MonoBehaviour
         _menuController.SwitchMenu(MenuTypes.MainMenu);
     }
 
-    private void SetUpUsableSquare()
-    {
-        _usablesContainerView?.StartLevel(_level);
-    }
-
     public void PlayGame()
     {
-        _sequenceContainerView?.StartLevel(_level);
+        _squareController.CreateSequenceSquare(_level);
     }
 
     public void LoseGame()
     {
+        Debug.Log("Lose");
         _menuController.SwitchMenu(MenuTypes.EnterName);
         _level = 0;
         Clear();
@@ -118,8 +106,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void Clear()
     {
-        _sequenceSquareController.Clear();
-        _usableSquareController.Clear();
+        _squareController.Clear();
     }
     #endregion
 }

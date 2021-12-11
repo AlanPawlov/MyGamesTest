@@ -3,18 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UsablesSquareContainerView : SquareContainerViewBase, IRequireDependency<UsableSquareController>
+public class UsablesSquareContainerView : SquareContainerViewBase
 {
-    private UsableSquareController _usableSquareController;
-
-    public void StartLevel(int level)
+    public void StartCreateUsableSquare(int level)
     {
         _level = level;
-        CreateUsableSquare();
-    }
-
-    public void CreateUsableSquare()
-    {
         _myRect = GetComponent<RectTransform>();
 
         var squareSize = CalculateSquareSize(_myRect.rect.height,
@@ -25,7 +18,7 @@ public class UsablesSquareContainerView : SquareContainerViewBase, IRequireDepen
             var square = Instantiate(_squarePrefab, _myRect);
             ChooseRandomModel(square);
             square.MyRect.sizeDelta = squareSize;
-            _usableSquareController.AddSquare(square);
+            _squareController.AddUsableSquare(square);
             square.OnDragAction += OnDrag;
             square.OnEndDragAction += OnEndDrag;
         }
@@ -42,7 +35,7 @@ public class UsablesSquareContainerView : SquareContainerViewBase, IRequireDepen
 
         if (square.MyRect.position.y > _myRect.position.y)
         {
-            _sequenceSquareController.UseSquare(square.MyModel);
+            _squareController.UseSquare(square.MyModel);
             ChooseRandomModel(square);
             square.MyRect.parent = _myRect;
         }
@@ -53,8 +46,9 @@ public class UsablesSquareContainerView : SquareContainerViewBase, IRequireDepen
         }
     }
 
-    public void AssignDependency(UsableSquareController dependency)
+    public override void AssignDependency(SquareController dependency)
     {
-        _usableSquareController = dependency;
+        base.AssignDependency(dependency);
+        _squareController.OnStartCreateUsableSquare += StartCreateUsableSquare;
     }
 }

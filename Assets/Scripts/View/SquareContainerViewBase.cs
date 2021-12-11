@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SquareContainerViewBase : MonoBehaviour, IRequireDependency<SequenceSquareController>
+public class SquareContainerViewBase : MonoBehaviour, IRequireDependency<SquareController>
 {
     protected GameRules _rules;
     protected RectTransform _myRect;
     protected SquaresList _squaresTypes;
     protected SquareView _squarePrefab;
-    protected SequenceSquareController _sequenceSquareController;
+    protected SquareController _squareController;
     protected int _level;
 
     public virtual void SetUp(GameRules rules, SquaresList allSquares, SquareView prefab)
@@ -35,8 +35,8 @@ public class SquareContainerViewBase : MonoBehaviour, IRequireDependency<Sequenc
         square.SetView(model);
     }
 
-    public void AssignDependency(SequenceSquareController dependency)
+    public virtual void AssignDependency(SquareController dependency)
     {
-        _sequenceSquareController = dependency;
+        _squareController = dependency;
     }
 }

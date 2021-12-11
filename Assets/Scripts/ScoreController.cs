@@ -60,6 +60,7 @@ public class ScoreController
     public void ResetScore()
     {
         CurrentScore = 0;
+        OnScoreChange.Invoke(CurrentScore);
     }
 
     public SaveData GetScore(int index)

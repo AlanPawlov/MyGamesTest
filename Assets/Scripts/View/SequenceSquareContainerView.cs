@@ -1,24 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class SequenceSquareContainerView : SquareContainerViewBase
 {
     private CustomProcess _showSquareSequence;
-    public Action OnHideSequence = delegate { };
 
-    public void StartLevel(int level)
+    public void StartCreateSequence(int level)
     {
         _level = level;
         _myRect = GetComponent<RectTransform>();
         _showSquareSequence = new CustomProcess();
-        CreateSequence();
-        ShowSequence();
-    }
-
-    public void CreateSequence()
-    {
         int squareCount = Mathf.Clamp(_rules.SquareSequenceLenght + _rules.SequenceStep * _level,
             0, 999);
 
@@ -30,24 +22,13 @@ public class SequenceSquareContainerView : SquareContainerViewBase
             var square = Instantiate(_squarePrefab, _myRect);
             square.MyRect.sizeDelta = squareSize;
             ChooseRandomModel(square);
-            _sequenceSquareController.AddSquare(square);
+            _squareController.AddSequenceSquare(square);
         }
     }
 
-    private void ShowSequence()
+    public override void AssignDependency(SquareController dependency)
     {
-        float timer = Mathf.Clamp(_rules.ShowSequenceDuration - _rules.ShowSequenceDurationStep * _level
-            , 1.5f, 999);
-        Debug.Log(timer);
-        _showSquareSequence.StartProcess(() =>
-        {
-            timer -= Time.deltaTime;
-            if (timer <= 0)
-            {
-                _showSquareSequence.EndProcess();
-                _sequenceSquareController.HideAllSquare();
-                OnHideSequence.Invoke();
-            }
-        });
+        base.AssignDependency(dependency);
+        _squareController.OnStartCreateSequenceSquare += StartCreateSequence;
     }
 }

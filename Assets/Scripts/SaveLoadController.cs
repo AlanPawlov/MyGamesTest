@@ -47,15 +47,6 @@ public class SaveLoadController
     {
         Debug.Log(_savePath);
         var jsonString = JsonConvert.SerializeObject(data);
-        if (File.Exists(_savePath))
-        {
-            File.WriteAllText(_savePath, jsonString);
-        }
-        else
-        {
-            FileStream file = File.Create(_savePath);
-            file.Close();
-            File.WriteAllText(_savePath, jsonString);
-        }
+        File.WriteAllText(_savePath, jsonString);
     }
 }

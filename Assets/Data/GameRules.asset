@@ -15,7 +15,7 @@ MonoBehaviour:
   <ShowSequenceDuration>k__BackingField: 3
   <ShowSequenceDurationStep>k__BackingField: 1
   <MatchDuration>k__BackingField: 1.52
-  <MatchDurationStep>k__BackingField: 0
+  <MatchDurationStep>k__BackingField: 1
   <SquareSequenceLenght>k__BackingField: 4
   <SequenceStep>k__BackingField: 1
   <UsableSquareCount>k__BackingField: 5
